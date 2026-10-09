@@ -219,6 +219,22 @@ def get_css(dark):
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }}
+        
+        .footer {{
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            padding: 1.5rem 0;
+            line-height: 1.8;
+        }}
+        
+        .footer .name {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 1rem;
+        }}
     </style>
     """
 
@@ -358,7 +374,6 @@ def create_comparison_chart(input_dict, user_price):
 with st.sidebar:
     st.markdown("### ⚙️ Settings")
     
-    # Theme toggle
     theme_label = "☀️ Light Mode" if st.session_state.dark_mode else "🌙 Dark Mode"
     if st.button(theme_label, use_container_width=True):
         st.session_state.dark_mode = not st.session_state.dark_mode
@@ -366,7 +381,6 @@ with st.sidebar:
     
     st.markdown("---")
     
-    # History
     st.markdown(f"### 💾 Prediction History ({len(st.session_state.history)})")
     
     if st.session_state.history:
@@ -533,7 +547,6 @@ if submitted:
             sign = "▲" if diff >= 0 else "▼"
             st.markdown(f'<div class="compare-card"><div class="compare-label">Difference</div><div class="compare-value {diff_class}">{sign} {abs(diff_pct):.1f}%</div><div class="compare-label">${abs(diff):,.0f}</div></div>', unsafe_allow_html=True)
         
-        # Comparison bar chart
         comparison_fig = create_comparison_chart(input_dict, price)
         if comparison_fig:
             st.plotly_chart(comparison_fig, use_container_width=True)
@@ -596,16 +609,6 @@ Comparison with Dataset:
 
 else:
     st.info("👆 Enter the house details and click 'Predict Price'")
-
-
-# ---------- Footer ----------
-st.markdown("---")
-st.markdown(
-    '<div style="text-align: center; color: #999; font-size: 0.9rem;">'
-    'Built with ❤️ using Streamlit and XGBoost'
-    '</div>',
-    unsafe_allow_html=True
-)
 
 
 # ==================== Footer ====================
