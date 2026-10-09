@@ -606,3 +606,13 @@ st.markdown(
     '</div>',
     unsafe_allow_html=True
 )
+
+
+# ==================== Footer ====================
+st.markdown("---")
+st.markdown("""
+    <div class="footer">
+        Built by <span class="name">A_srt343</span><br>
+        Instagram: <span class="name">@project_srt343</span>
+    </div>
+""", unsafe_allow_html=True)
